@@ -1,6 +1,7 @@
 import { tasksModel } from "../models/task.model.ts";
 import { usersModel } from "../models/user.model.ts";
 import bcrypt from "bcrypt";
+import jwt from "jsonwebtoken";
 
 export class userController {
   static register = async (req: any, resp: any) => {
@@ -26,13 +27,13 @@ export class userController {
       }
 
       // Hash password
-      // const hashedPassword = await bcrypt.hash(password, 10);
+      const hashedPassword = await bcrypt.hash(password, 10);
 
       // Create user
       const user = await usersModel.create({
         name,
         email,
-        password,
+        password: hashedPassword,
       });
 
       // Remove password from response
@@ -47,6 +48,69 @@ export class userController {
         success: true,
         message: "User registered successfully",
         data: userResponse,
+      });
+    } catch (error: any) {
+      return resp.status(500).json({
+        success: false,
+        message: "Internal Server Error",
+        error: error.message,
+      });
+    }
+  };
+
+  static login = async (req: any, resp: any) => {
+    try {
+      const { email, password } = req.body;
+
+      // Validation
+      if (!email || !password) {
+        return resp.status(400).json({
+          success: false,
+          message: "Email and password are required",
+        });
+      }
+
+      // Check user exists
+      const user = await usersModel.findOne({ email });
+
+      if (!user) {
+        return resp.status(401).json({
+          success: false,
+          message: "Invalid email or password",
+        });
+      }
+
+      // Compare password
+      const isPasswordMatch = await bcrypt.compare(password, user.password);
+
+      if (!isPasswordMatch) {
+        return resp.status(401).json({
+          success: false,
+          message: "Invalid email or password",
+        });
+      }
+
+      // Generate JWT Token
+      const token = jwt.sign(
+        {
+          id: user._id,
+          email: user.email,
+        },
+        process.env.JWT_SECRET || "best-task-app",
+        {
+          expiresIn: "7d",
+        },
+      );
+
+      return resp.status(200).json({
+        success: true,
+        message: "Login successful",
+        token,
+        user: {
+          id: user._id,
+          name: user.name,
+          email: user.email,
+        },
       });
     } catch (error: any) {
       return resp.status(500).json({

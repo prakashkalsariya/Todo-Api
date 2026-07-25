@@ -4,7 +4,8 @@ import { userController } from "../controllers/user.controller.ts";
 
 const router = Router();
 
-router.post("/user/register", userController.register);
+router.post("/register", userController.register);
+router.post("/login", userController.login);
 
 // router.get(`/task/:id`, taskController.getTasks);
 
