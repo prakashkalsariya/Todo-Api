@@ -5,7 +5,7 @@ import { verifyToken } from "../middlewares/auth.ts";
 
 const router = Router();
 // task list routes
-router.use("/api", verifyToken, taskRoutes);
+router.use("/api", taskRoutes);
 router.use("/api", userRoutes);
 const apiRoutes = router;
 

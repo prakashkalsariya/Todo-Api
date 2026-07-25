@@ -1,3 +1,4 @@
+import { CommonHelpers } from "../helpers/common.ts";
 import { tasksModel } from "../models/task.model.ts";
 
 export class taskController {
@@ -75,11 +76,14 @@ export class taskController {
         });
       }
 
+      let email = CommonHelpers.getEmailByToken(req);
+
       const task = await tasksModel.create({
         title,
         description,
         date,
         time,
+        user: email,
       });
 
       console.log("task>>", task);
@@ -102,7 +106,6 @@ export class taskController {
     try {
       const { id } = req.params;
       const { title, description, date, time } = req.body;
-
       // Check if task exists
       const task = await tasksModel.findById(id);
 
@@ -160,7 +163,7 @@ export class taskController {
         success: true,
         data: task,
       });
-    } catch (error:any) {
+    } catch (error: any) {
       // Invalid MongoDB ObjectId
       if (error.name === "CastError") {
         return resp.status(400).json({

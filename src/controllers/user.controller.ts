@@ -18,13 +18,15 @@ export class userController {
 
       // Check existing user
       const existingUser = await usersModel.findOne({ email });
-
+      console.log("existingUser>>", existingUser);
       if (existingUser) {
-        return resp.status(409).json({
+        return resp.status(201).json({
           success: false,
           message: "Email already registered",
         });
       }
+
+      console.log("existingUser>>", existingUser);
 
       // Hash password
       const hashedPassword = await bcrypt.hash(password, 10);
@@ -50,6 +52,8 @@ export class userController {
         data: userResponse,
       });
     } catch (error: any) {
+      console.log("error>>>", error);
+
       return resp.status(500).json({
         success: false,
         message: "Internal Server Error",
@@ -74,9 +78,9 @@ export class userController {
       const user = await usersModel.findOne({ email });
 
       if (!user) {
-        return resp.status(401).json({
+        return resp.status(201).json({
           success: false,
-          message: "Invalid email or password",
+          message: "User not found!",
         });
       }
 
@@ -84,9 +88,9 @@ export class userController {
       const isPasswordMatch = await bcrypt.compare(password, user.password);
 
       if (!isPasswordMatch) {
-        return resp.status(401).json({
+        return resp.status(201).json({
           success: false,
-          message: "Invalid email or password",
+          message: "Invalid password!",
         });
       }
 
@@ -104,9 +108,9 @@ export class userController {
 
       return resp.status(200).json({
         success: true,
-        message: "Login successful",
+        message: "Login successfully",
         token,
-        user: {
+        data: {
           id: user._id,
           name: user.name,
           email: user.email,
