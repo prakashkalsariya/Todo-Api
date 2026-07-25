@@ -8,11 +8,11 @@ router.get(`/`, (req, resp) => {
   resp.send("hello");
 });
 
-router.get("/tasks/list", taskController.getTasks);
-router.put(`/task/update/:id`, taskController.updateTask);
-router.delete("/task/delete/:id", taskController.deleteTask);
-router.post("/task/create", taskController.createTask);
-router.get("/task/:id", taskController.getOne);
+router.get("/api/tasks", taskController.getTasks);
+router.put(`/api/task/update/:id`, taskController.updateTask);
+router.delete("/api/task/delete/:id", taskController.deleteTask);
+router.post("/api/task/create", taskController.createTask);
+router.get("/api/task/:id", taskController.getOne);
 
 // router.get(`/task/:id`, taskController.getTasks);
 
