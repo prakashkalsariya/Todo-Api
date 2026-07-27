@@ -5,8 +5,12 @@ export class taskController {
   static getTasks = async (req: any, resp: any) => {
     try {
       let tasks = await tasksModel.find();
-      if (!tasks.length) {
-        return resp.status(404).json({
+      let userFilterTasks = tasks.filter(
+        (task) => task.user === CommonHelpers?.getEmailByToken(req),
+      );
+
+      if (!userFilterTasks.length) {
+        return resp.status(201).json({
           success: false,
           message: "No tasks found",
         });
@@ -14,8 +18,8 @@ export class taskController {
 
       resp.status(200).json({
         success: true,
-        count: tasks.length,
-        data: tasks,
+        count: userFilterTasks.length,
+        data: userFilterTasks,
       });
     } catch (error: any) {
       console.error(error);

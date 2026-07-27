@@ -19,6 +19,11 @@ export const userSchema = new mongoose.Schema(
       required: [true, "Password is required"],
       minlength: 5,
     },
+
+     profile_image: {
+      type: String,
+      trim: true,
+    },
   },
   {
     timestamps: true,
