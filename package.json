@@ -50,11 +50,6 @@
       "src": "/(.*)",
       "dest": "server.ts"
     }
-  ],
- "compilerOptions": {
-    "module": "ESNext",
-    "moduleResolution": "bundler",
-    "allowImportingTsExtensions": true, 
-    "noEmit": true
-  }
+  ]
+  
 }
