@@ -1,4 +1,3 @@
-import { tasksModel } from "../models/task.model.ts";
 import { usersModel } from "../models/user.model.ts";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
@@ -81,7 +80,7 @@ export class userController {
         },
         process.env.JWT_SECRET || "",
         {
-          expiresIn: "7d",
+          expiresIn:"7d"
         },
       );
 

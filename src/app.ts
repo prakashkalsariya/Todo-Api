@@ -2,7 +2,6 @@ import express from "express";
 import cors from "cors";
 import apiRoutes from "./routes/routes.ts";
 import { commonVariables } from "./helpers/common.anums.ts";
-// import path from 'express'
 
 const app = express();
 app.use(cors());
