@@ -49,9 +49,9 @@
       "src": "/(.*)",
       "dest": "server.ts"
     }
-  ]
-  
-
+  ],
+  "compilerOptions": {
+    "module": "ESNext",
+    "moduleResolution": "bundler"
+  }
 }
-
-
