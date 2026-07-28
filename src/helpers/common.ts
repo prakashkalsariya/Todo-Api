@@ -1,6 +1,6 @@
 import jwt from "jsonwebtoken";
 import multer from "multer";
-import { commonVariables } from "./common.anums";
+import { commonVariables } from "./common.anums.ts";
 export class CommonHelpers {
   static getEmailByToken = (req: any) => {
     const authHeader = req.headers.authorization;
