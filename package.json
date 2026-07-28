@@ -50,8 +50,10 @@
       "dest": "server.ts"
     }
   ],
-  "compilerOptions": {
+ "compilerOptions": {
     "module": "ESNext",
-    "moduleResolution": "bundler"
+    "moduleResolution": "bundler",
+    "allowImportingTsExtensions": true, 
+    "noEmit": true
   }
 }
