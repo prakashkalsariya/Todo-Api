@@ -6,7 +6,7 @@ import jwt from "jsonwebtoken";
 export class userController {
   static register = async (req: any, resp: any) => {
     console.log("req>>", req.body, req.file);
-    
+
     try {
       const { name, email, password } = req.body;
 
@@ -79,7 +79,7 @@ export class userController {
           id: user._id,
           email: user.email,
         },
-        process.env.JWT_SECRET || "best-task-app",
+        process.env.JWT_SECRET || "",
         {
           expiresIn: "7d",
         },
@@ -93,7 +93,7 @@ export class userController {
           id: user._id,
           name: user.name,
           email: user.email,
-          profile_image:user.profile_image
+          profile_image: user.profile_image,
         },
       });
     } catch (error: any) {

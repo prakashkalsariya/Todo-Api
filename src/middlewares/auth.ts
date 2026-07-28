@@ -1,4 +1,4 @@
-import jwt from "jsonwebtoken"
+import jwt from "jsonwebtoken";
 
 export const verifyToken = (req: any, res: any, next: any) => {
   try {
@@ -11,12 +11,10 @@ export const verifyToken = (req: any, res: any, next: any) => {
         message: "Access denied. Token not provided.",
       });
     }
-
     // Extract token
     const token = authHeader.split(" ")[1];
-
     // Verify token
-    const decoded = jwt.verify(token, process.env.JWT_SECRET || "best-task-app");
+    const decoded = jwt.verify(token, process.env.JWT_SECRET || "");
 
     // Store decoded user data
     req.user = decoded;

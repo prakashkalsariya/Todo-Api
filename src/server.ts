@@ -1,10 +1,9 @@
 import mongoose from "mongoose";
 import app from "./app.ts";
+import dotenv from "dotenv";
 
-const databaseURI = process.env.MONGODB_URL || "mongodb://localhost:27017/user-task";
-
-console.log("databaseURI>>>",databaseURI);
-
+dotenv.config();
+const databaseURI: any = process.env.MONGODB_URL;
 
 mongoose.connect(databaseURI);
 
@@ -22,7 +21,7 @@ connection.on("disconnected", () => {
   console.log("Mongoose disconnected");
 });
 
-const PORT = process.env.PORT || 4800;
+const PORT = process.env.PORT;
 
 const server = app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}...`);
