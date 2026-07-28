@@ -93,6 +93,7 @@ export class userController {
           id: user._id,
           name: user.name,
           email: user.email,
+          profile_image:user.profile_image
         },
       });
     } catch (error: any) {
