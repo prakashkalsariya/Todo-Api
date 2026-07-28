@@ -53,8 +53,7 @@
   ,
   "compilerOptions": {
     "allowImportingTsExtensions": true,
-    "noEmit": true,
-    "moduleResolution": "bundler" 
+    "noEmit": true
   }
 
 }
