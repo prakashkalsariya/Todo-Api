@@ -1,6 +1,6 @@
 import { Router } from "express";
-import taskRoutes from "./task.route.ts";
-import userRoutes from "./user.route.ts";
+import taskRoutes from "./task.route";
+import userRoutes from "./user.route";
 
 const router = Router();
 // task list routes

@@ -1,5 +1,5 @@
-import { CommonHelpers } from "../helpers/common.ts";
-import { tasksModel } from "../models/task.model.ts";
+import { CommonHelpers } from "../helpers/common";
+import { tasksModel } from "../models/task.model";
 
 export class taskController {
   static getTasks = async (req: any, resp: any) => {
