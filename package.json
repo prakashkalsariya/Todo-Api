@@ -50,7 +50,12 @@
       "dest": "server.ts"
     }
   ]
-
+  ,
+ "compilerOptions": {
+    "module": "ESNext",
+    "moduleResolution": "Node",
+    "esModuleInterop": true
+  }
 
 }
 
