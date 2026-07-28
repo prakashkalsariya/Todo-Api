@@ -50,4 +50,13 @@
       "dest": "server.ts"
     }
   ]
+  ,
+  "compilerOptions": {
+    "allowImportingTsExtensions": true,
+    "noEmit": true,
+    "moduleResolution": "bundler" 
+  }
+
 }
+
+
