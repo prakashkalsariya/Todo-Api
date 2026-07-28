@@ -53,7 +53,7 @@
  "compilerOptions": {
     "module": "ESNext",
     "moduleResolution": "bundler",
-    "allowImportingTsExtensions": true, 
-    "noEmit": true
+    "allowImportingTsExtensions": false, 
+    "noEmit": false
   }
 }
